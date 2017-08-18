@@ -1,0 +1,138 @@
+/* theme-default */
+/* blue */
+/* #2196f3 */
+
+.theme-default .login-page .bg{
+    background: #303457;
+    opacity: 0.8;
+}
+.theme-default .side-container .bg {
+    background: #303457;
+    opacity: 0.94;
+}
+
+.theme-default .btn-bg,
+.theme-default .soso button,
+.theme-default .tag-list li .time .icon{
+    background: #2196f3;
+}
+.theme-default .btn-bg:hover,
+.theme-default .soso button:hover{
+    background: #1c85d8;
+}
+
+.theme-default a.btn-line {
+    color: #2196f3;
+    border-color: #2196f3;
+}
+.theme-default a.btn-line:hover {
+    background: #eaf6ff;
+}
+
+
+
+.theme-default .nav a.active span,
+.theme-default .nav a.active i.iconfont,
+.theme-default .tree .name a.icon:hover .iconfont,
+.theme-default .tree .name a.text:hover,
+.theme-default .tree li a:hover,
+.theme-default .tree .icon-tree-open,
+.theme-default .tree .active,
+.theme-default .tab li a:hover,
+.theme-default table td .do i,
+.theme-default table th a:hover span,
+.theme-default table th a:hover i.iconfont,
+.theme-default .pagination button:hover,
+.theme-default .pop .btn a.action,
+.theme-default .tag-list li a:hover .time,
+.theme-default .tag-list li a:hover .each-title,
+.theme-default .tag-list li a:hover .description,
+.theme-default .do.new-window a:hover i.iconfont,
+.theme-default .play-page-top .ctrl-box .f-l a i.iconfont,
+.theme-default .model-box .title .f-r .do a i.iconfont,
+.theme-default .down-load,
+.theme-default .group-path a,
+.theme-default .question-type li,
+.theme-default .add-group-btn,
+.theme-default .question-group .each-group.active .title .f-l,
+.theme-default .department .do a:hover,
+.theme-default .ta_date .opt_sel,
+.theme-default .form-template-list .do a,
+.theme-default .step span.active{
+    color: #2196f3;
+}
+
+
+.theme-default table td .do a:hover i,
+.theme-default .pop .btn a.action:hover,
+.theme-default .model-box .title .f-r .do a:hover i.iconfont,
+.theme-default .down-load:hover,
+.theme-default .group-path a:hover,
+.theme-default .add-group-btn:hover,
+.theme-default .form-template-list .do a:hover{
+    color: #1c85d8;
+}
+.theme-default table tr:hover,
+.theme-default .rank-box .each-group li:hover,
+.theme-default .task-detail-list li:hover,
+.theme-default .pop .user-choose .f-r .model-box li:hover,
+.theme-default .soso-auto li.active,
+.theme-default .question-type li:hover{
+    background: #ebf4fa;
+}
+
+
+.theme-default .play-page-top .ctrl-box .f-l a{
+    border-color: #2196f3;
+}
+.theme-default .play-page-top .ctrl-box .f-l a:hover{
+    background: #2196f3;
+}
+
+.theme-default .play-page-top .f-r .auto:hover,
+.theme-default .play-page-top .f-r .text:hover{
+    border-color: #2196f3;
+    color: #2196f3;
+}
+
+.theme-default .play-page-top .f-r .auto.active,
+.theme-default .play-page-top .f-r .text.active{
+    border-color: #2196f3;
+    background: #2196f3;
+}
+
+.theme-default .progress-bar .active-length{
+    background: #2196f3;
+}
+
+.theme-default .progress-bar .active-length .btn:before{
+    background: #2196f3;
+}
+
+.theme-default .task-detail-list li .do a i.iconfont{
+    color: #2196f3;
+}
+
+.theme-default .task-detail-list li .do a{
+    border-color: #2196f3;
+}
+.theme-default .task-detail-list li .do a:hover{
+    background: #2196f3;
+}
+
+
+.theme-default .question-group .each-group.active, .theme-default .form-template-list li:hover .in{
+    border: #2196f3 1px solid;
+    box-shadow: rgba(33,150,243,0.5) 0 0 10px;
+}
+.theme-default table.dateRangeDateTable tr:hover{
+    background: none;
+}
+
+.theme-default .play-page-top .f-r .tag{
+    color: #2196f3;
+    border-color: #2196f3;
+}
+.theme-default .play-page-top .f-r .tag:hover{
+    background: #2196f3;
+}

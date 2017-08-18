@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html class="theme-default">
+<head>
+    <meta charset="UTF-8">
+    <title>Crystal Quality</title>
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/jQuery v1.11.1.js"></script>
+    <script type="text/javascript" src="js/ui.js"></script>
+    <script type="text/javascript" src="js/player.js"></script>
+    <script type="text/javascript" src="js/lyric.js"></script>
+    <script type="text/javascript" src="js/scroll-startstop.events.jquery.js"></script>
+    <script type="text/javascript" src="js/wavesurfer.js"></script>
+    <script type="text/javascript" src="js/wavesurfer.timeline.js"></script>
+    <script type="text/javascript" src="js/wavesurfer.regions.js"></script>
+    <script type="text/javascript" src="js/showPicture5-1-3.js"></script>
+    <script type="text/javascript" src="js/deflate.js"></script>
+    <script type="text/javascript" src="js/websocket.js"></script>
+    
+</head>
+<body>
+<!--play page-->
+
+<!--视频,词-->
+<div class="play-page-top">
+
+    <div id="flexBox" class="flex-box clearfix">
+        <!--class no-video 用于没有视频状态下的样式-->
+        <div id="videoBox" class="video-box">
+            <canvas id="imgCanvas" style="display: none;"></canvas>
+            <canvas id="imgCanvas2"></canvas>
+
+            <!--多屏切换-->
+            <div id="dropBox" class="drop">
+                <div id="screenActive" class="active"><span id="screenLabel">All</span><i class="iconfont icon-arrow-d rote-180"></i></div>
+                <div id="screenDrop" class="drop-down">
+                    <ul>
+                        <li><a onclick="select(-1, 'All')">All</a></li>
+                        <li><a onclick="select(0, 'screen 1')">screen 1</a></li>
+                        <li><a onclick="select(1, 'screen 2')">screen 2</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--多屏切换-->
+
+        </div>
+        <div id="scrollText" class="scroll-text">
+            <div id="lyricContainer" class="in">
+            </div>
+        </div>
+    </div>
+    <div id="forFix">
+        <div class="in">
+            <!--音波-->
+            <div id="waveContainer" class="voice-box">
+                <div class="tip-o"><i></i><span>operator</span></div>
+                <div class="tip-c"><i></i><span>guest</span></div>
+                
+            </div>
+            <div class="timeline"><div id="waveform-timeline"></div></div>
+            
+            <!--音波-->
+
+            <!--进度条-->
+            <div id="audioProgressBar" class="progress-bar">
+                <div id="audioActive" class="active-length"><i id="audio-btn" class="btn"></i></div>
+            </div>
+            <!--进度条-->
+
+            <!--工具栏-->
+            <div class="ctrl-box">
+                <div class="f-l">
+                    <a class="pre disable"><i class="iconfont icon-player-pre"></i></a>
+                    <a class="play"><i class="iconfont icon-player-play"></i></a>
+                    <a class="pause" style="display: none;"><i class="iconfont icon-player-pause"></i></a>
+                    <a href="/" class="next"><i class="iconfont icon-player-next"></i></a>
+                </div>
+                <div class="f-r">
+                 	<span class="speed"> x1 </span>
+                    <span class="timing">00:00 / 00:00</span>
+                    <div class="volume clearfix">
+                        <span class="icon"><i class="iconfont icon-player-voice"></i></span>
+                        <div id="volumnProgressBar" class="progress-bar">
+                            <div id="volumnActive" class="active-length" style="width: 100%"><i id="volumn-btn" class="btn"></i></div>
+                        </div>
+                    </div>
+                    <a class="auto">AUTO</a>
+                    <a id="textBtn" class="text active">T</a>
+                    <a id="tagBtn" class="tag" title="Add Tag"><i class="iconfont icon-flag"></i></a>
+                </div>
+            </div>
+            <!--工具栏-->
+        </div>
+    </div>
+</div>
+<!--视频,词-->
+
+<!--信息-->
+<div class="play-page-info">
+    <span><label>sn：</label>032938245867_349843</span>
+    <span><label>operator：</label>allen</span>
+    <span><label>start time：</label>2017-9-8 11:00:20</span>
+    <span><label>direction：</label>incoming</span>
+    <span><label>length：</label>00:00:12</span>
+    <span><label>creator：</label>admin</span>
+</div>
+<!--信息-->
+
+<div class="play-page-btm">
+    <!--rank-->
+    <div class="rank-box">
+        <div class="model-box">
+            <!--标题-->
+            <div class="title clearfix">
+                <div class="f-l"><span>rank</span></div>
+                <div class="f-r">
+                    <div class="do new-window">
+                        <a href="/"><i class="iconfont icon-new-window"></i><span>open in new window</span></a>
+                    </div>
+                </div>
+            </div>
+            <!--标题-->
+
+            <!--每组打分-->
+            <div class="each-group">
+                <ul>
+                    <li>
+                        <span class="seq">1.1</span>
+                        <p class="question">Question one title text</p>
+                        <div class="box">
+                            <!--star-->
+                            <!--取值 $("input[type='radio']:checked").val(); 1,2,3,4,5-->
+                            <form>
+                                <div class="star-box">
+                                    <input type="radio" id="starRate-1-5" name="rate" value="5"/>
+                                    <label for="starRate-1-5"><i class="iconfont icon-star"></i><i class="for-anim iconfont icon-star"></i></label>
+
+                                    <input type="radio" id="starRate-1-4" name="rate" value="4"/>
+                                    <label for="starRate-1-4"><i class="iconfont icon-star"></i><i class="for-anim iconfont icon-star"></i></label>
+
+                                    <input type="radio" id="starRate-1-3" name="rate" value="3"/>
+                                    <label for="starRate-1-3"><i class="iconfont icon-star"></i><i class="for-anim iconfont icon-star"></i></label>
+
+                                    <input type="radio" id="starRate-1-2" name="rate" value="2"/>
+                                    <label for="starRate-1-2"><i class="iconfont icon-star"></i><i class="for-anim iconfont icon-star"></i></label>
+
+                                    <input type="radio" id="starRate-1-1" name="rate" value="1"/>
+                                    <label for="starRate-1-1"><i class="iconfont icon-star"></i><i class="for-anim iconfont icon-star"></i></label>
+                                </div>
+                            </form>
+                            <!--star-->
+                        </div>
+                        <div class="remarks"><input type="text" placeholder="Enter remarks"/></div>
+                        <div class="score">
+                            <p class="num">10</p>
+                            <label>score</label>
+                            <div class="drop tip">
+                                <span>?</span>
+                                <div class="drop-down">
+                                    <p>Maybe some your text for how to rate the question !</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="seq">1.2</span>
+                        <p class="question">Question one title text</p>
+                        <div class="box">
+                            <!--百分比-->
+                            <form oninput="x.value=parseInt(rangeRate1.value)">
+                                <div class="range-box">
+                                    <input type="range" id="rangeRate1" value="0" min="0" max="100" />
+                                    <output name="x">0</output>
+                                    <span>%</span>
+                                </div>
+                            </form>
+                            <!--百分比-->
+                        </div>
+                        <div class="remarks"><input type="text" placeholder="Enter remarks"/></div>
+                        <div class="score">
+                            <p class="num">6</p>
+                            <label>score</label>
+                            <div class="drop tip">
+                                <span>?</span>
+                                <div class="drop-down">
+                                    <p>Maybe some your text for how to rate the question !</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="seq">1.3</span>
+                        <p class="question">Question one title text</p>
+                        <div class="box">
+                            <!--多选-->
+                            <form>
+                                <div class="check-box clearfix">
+                                <span>
+                                    <input type="checkbox" name="rate" id="checkRate-1-1" value="5"/>
+                                    <label for="checkRate-1-1">Can solve visitor problems（5 Score）</label>
+                                </span>
+                                    <span>
+                                    <input type="checkbox" name="rate" id="checkRate-1-2" value="2"/>
+                                    <label for="checkRate-1-2">Friendly to visitors（2 Score）</label>
+                                </span>
+                                </div>
+                            </form>
+                            <!--多选-->
+                        </div>
+                        <div class="remarks"><input type="text" placeholder="Enter remarks"/></div>
+                        <div class="score">
+                            <p class="num">6</p>
+                            <label>score</label>
+                            <div class="drop tip">
+                                <span>?</span>
+                                <div class="drop-down">
+                                    <p>Maybe some your text for how to rate the question !</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="seq">1.4</span>
+                        <p class="question">Question one title text</p>
+                        <div class="box">
+                            <!--单选-->
+                            <form>
+                                <div class="radio-box clearfix">
+                                <span>
+                                    <input type="radio" name="rate" id="radioRate-1-1" value="5"/>
+                                    <label for="radioRate-1-1">Good（5 Score）</label>
+                                </span>
+                                    <span>
+                                    <input type="radio" name="rate" id="radioRate-1-2" value="0"/>
+                                    <label for="radioRate-1-2">Bad（0 Score）</label>
+                                </span>
+                                </div>
+                            </form>
+                            <!--单选-->
+                        </div>
+                        <div class="remarks"><input type="text" placeholder="Enter remarks"/></div>
+                        <div class="score">
+                            <p class="num">6</p>
+                            <label>score</label>
+                            <div class="drop tip">
+                                <span>?</span>
+                                <div class="drop-down">
+                                    <p>Maybe some your text for how to rate the question !</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="seq">1.5</span>
+                        <p class="question">Question one title text</p>
+                        <div class="box">
+                            <!--自由打分-->
+                            <form>
+                                <div class="input-box clearfix">
+                                    <input type="text" placeholder="Input score"/>
+                                </div>
+                            </form>
+                            <!--自由打分-->
+                        </div>
+                        <div class="remarks"><input type="text" placeholder="Enter remarks"/></div>
+                        <div class="score">
+                            <p class="num">6</p>
+                            <label>score</label>
+                            <div class="drop tip">
+                                <span>?</span>
+                                <div class="drop-down">
+                                    <p>Maybe some your text for how to rate the question !</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--每组打分-->
+
+            <!--每组打分-->
+            <div class="each-group">
+                <ul>
+                    <li>
+                        <span class="seq">2.1</span>
+                        <p class="question">Question one title text</p>
+                        <div class="box">
+                            <!--star-->
+                            <form>
+                                <div class="star-box">
+                                    <input type="radio" id="starRate-2-5" name="rate" value="5"/>
+                                    <label for="starRate-2-5"><i class="iconfont icon-star"></i><i class="for-anim iconfont icon-star"></i></label>
+
+                                    <input type="radio" id="starRate-2-4" name="rate" value="4"/>
+                                    <label for="starRate-2-4"><i class="iconfont icon-star"></i><i class="for-anim iconfont icon-star"></i></label>
+
+                                    <input type="radio" id="starRate-2-3" name="rate" value="3"/>
+                                    <label for="starRate-2-3"><i class="iconfont icon-star"></i><i class="for-anim iconfont icon-star"></i></label>
+
+                                    <input type="radio" id="starRate-2-2" name="rate" value="2"/>
+                                    <label for="starRate-2-2"><i class="iconfont icon-star"></i><i class="for-anim iconfont icon-star"></i></label>
+
+                                    <input type="radio" id="starRate-2-1" name="rate" value="1"/>
+                                    <label for="starRate-2-1"><i class="iconfont icon-star"></i><i class="for-anim iconfont icon-star"></i></label>
+                                </div>
+                            </form>
+                            <!--star-->
+                        </div>
+                        <div class="remarks"><input type="text" placeholder="Enter remarks"/></div>
+                        <div class="score">
+                            <p class="num">10</p>
+                            <label>score</label>
+                            <div class="drop tip">
+                                <span>?</span>
+                                <div class="drop-down">
+                                    <p>Maybe some your text for how to rate the question !</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="seq">2.2</span>
+                        <p class="question">Question one title text</p>
+                        <div class="box">
+                            <!--百分比-->
+                            <form oninput="x.value=parseInt(rangeRate2.value)">
+                                <div class="range-box">
+                                    <input type="range" id="rangeRate2" value="0" min="0" max="100">
+                                    <output name="x">0</output>
+                                    <span>%</span>
+                                </div>
+                            </form>
+                            <!--百分比-->
+                        </div>
+                        <div class="remarks"><input type="text" placeholder="Enter remarks"/></div>
+                        <div class="score">
+                            <p class="num">6</p>
+                            <label>score</label>
+                            <div class="drop tip">
+                                <span>?</span>
+                                <div class="drop-down">
+                                    <p>Maybe some your text for how to rate the question !</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="seq">2.3</span>
+                        <p class="question">Question one title text</p>
+                        <div class="box">
+                            <!--多选-->
+                            <form>
+                                <div class="check-box clearfix">
+                                <span>
+                                    <input type="checkbox" name="rate" id="checkRate-2-1" value="5"/>
+                                    <label for="checkRate-2-1">Can solve visitor problems（5 Score）</label>
+                                </span>
+                                    <span>
+                                    <input type="checkbox" name="rate" id="checkRate-2-2" value="2"/>
+                                    <label for="checkRate-2-2">Friendly to visitors（2 Score）</label>
+                                </span>
+                                </div>
+                            </form>
+                            <!--多选-->
+                        </div>
+                        <div class="remarks"><input type="text" placeholder="Enter remarks"/></div>
+                        <div class="score">
+                            <p class="num">6</p>
+                            <label>score</label>
+                            <div class="drop tip">
+                                <span>?</span>
+                                <div class="drop-down">
+                                    <p>Maybe some your text for how to rate the question !</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="seq">2.4</span>
+                        <p class="question">Question one title text</p>
+                        <div class="box">
+                            <!--单选-->
+                            <form>
+                                <div class="radio-box clearfix">
+                                <span>
+                                    <input type="radio" name="rate" id="radioRate-2-1" value="5"/>
+                                    <label for="radioRate-2-1">Good（5 Score）</label>
+                                </span>
+                                    <span>
+                                    <input type="radio" name="rate" id="radioRate-2-2" value="0"/>
+                                    <label for="radioRate-2-2">Bad（0 Score）</label>
+                                </span>
+                                </div>
+                            </form>
+                            <!--单选-->
+                        </div>
+                        <div class="remarks"><input type="text" placeholder="Enter remarks"/></div>
+                        <div class="score">
+                            <p class="num">6</p>
+                            <label>score</label>
+                            <div class="drop tip">
+                                <span>?</span>
+                                <div class="drop-down">
+                                    <p>Maybe some your text for how to rate the question !</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--每组打分-->
+
+            <!--底部分值,按钮-->
+            <div class="btn-box clearfix">
+                <div class="f-l">
+                    <span><label>total score:</label><i>100</i></span>
+                    <span><label>scored:</label><i class="c-r">80</i></span>
+                </div>
+                <div class="f-r">
+                    <div class="state-box">
+                        <div class="ing"><i class="iconfont icon-loading"></i><span>Submission...</span></div>
+                        <div class="suc"><i class="iconfont icon-ok"></i><span>Success !</span></div>
+                        <div class="erro"><i class="iconfont icon-erro"></i><span>Erro !</span></div>
+                    </div>
+                    <button class="btn-bg" disabled="disabled">submit</button>
+                </div>
+            </div>
+            <!--底部分值,按钮-->
+
+        </div>
+    </div>
+    <!--rank-->
+
+    <!--tag list-->
+    <div class="tag-list-box">
+        <div class="model-box">
+            <div class="title clearfix">
+                <div class="f-l"><span>tag list</span></div>
+            </div>
+            <div class="in">
+                <ul id="tag-list-ul" class="tag-list">
+                    <li>
+                        <a>
+                            <i class="color-flag" style="background: #cfcfcf"></i>
+                            <span class="time">00:00-00:30<span class="icon"><i class="iconfont icon-player-play"></i></span></span>
+                            <p class="each-title">Opening remarks</p>
+                            <p class="description">Say hello to the visitor</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <i class="color-flag" style="background: #f54337"></i>
+                            <span class="time">00:60-02:00<span class="icon"><i class="iconfont icon-player-play"></i></span></span>
+                            <p class="each-title">Unable to answer questions</p>
+                            <p class="description">Operator business ability is insufficient</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <i class="color-flag" style="background: #4cb050"></i>
+                            <span class="time">02:30-03:09<span class="icon"><i class="iconfont icon-player-play"></i></span></span>
+                            <p class="each-title">Good question and answer</p>
+                            <p class="description">Give good help to the visitor's questions</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <i class="color-flag" style="background: #cfcfcf"></i>
+                            <span class="time">03:30-04:00<span class="icon"><i class="iconfont icon-player-play"></i></span></span>
+                            <p class="each-title">Concluding remarks</p>
+                            <p class="description">Thanks for visiting</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--tag list-->
+
+</div>
+
+<!--play page-->
+</body>
+</html>
